@@ -2,7 +2,7 @@ import json
 
 from allennlp.data.dataset_readers.dataset_reader import DatasetReader
 from allennlp.data.token_indexers import SingleIdTokenIndexer, TokenIndexer
-from allennlp.data.fields import Field, TextField, LabelField, SpanField, MetadataField
+from allennlp.data.fields import Field, TextField, LabelField, SpanField, IndexField, MetadataField
 from allennlp.data.instance import Instance
 from allennlp.data.tokenizers import Token
 from typing import Dict, List, Iterator
@@ -33,7 +33,7 @@ class UDSDatasetReader(DatasetReader):
                          metadata: Dict) -> Instance:
         fields: Dict[str, Field] = {}
         fields['tokens'] = TextField([Token(w) for w in sent_tokens], self._token_indexers)
-        fields['pred_idx'] = SpanField(span_start=pred_idx, span_end=pred_idx, sequence_field=fields['tokens'])
-        fields['arg_idx'] = SpanField(span_start=arg_idx, span_end=arg_idx, sequence_field=fields['tokens'])
+        fields['pred_idx'] = IndexField(index=pred_idx, sequence_field=fields['tokens'])
+        fields['arg_idx'] = IndexField(index=arg_idx, sequence_field=fields['tokens'])
         fields['label'] = LabelField(label)
         return Instance(fields)
