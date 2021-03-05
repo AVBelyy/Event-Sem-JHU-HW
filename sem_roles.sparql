@@ -1,0 +1,85 @@
+# AGENT := (existed_before > 0) ∧ ((volition > 0) ∨ (instigation > 0))
+
+SELECT ?edge
+WHERE { ?pred ?edge ?arg ;
+             <domain> <semantics> ;
+             <type>   <predicate> ;
+       { ?edge <existed_before> ?existed_before
+               FILTER ( ?existed_before > 0 )
+       }
+       { ?edge <volition> ?volition
+               FILTER ( ?volition > 0 )
+       } UNION
+       { ?edge <instigation> ?instigation
+               FILTER ( ?instigation > 0 )
+       }
+     }
+
+
+# PATIENT := (change_of_state > 0) ∧ (volition < 0) ∧ (instigation < 0)
+
+SELECT ?edge
+WHERE { ?pred ?edge ?arg ;
+             <domain> <semantics> ;
+             <type>   <predicate> ;
+       { ?edge <change_of_state> ?change_of_state
+               FILTER ( ?change_of_state > 0 )
+       }
+       { ?edge <volition> ?volition
+               FILTER ( ?volition < 0 )
+       }
+       { ?edge <instigation> ?instigation
+               FILTER ( ?instigation < 0 )
+       }
+     }
+
+
+# THEME := (change_of_state < 0) ∧ (volition < 0) ∧ (instigation < 0)
+
+SELECT ?edge
+WHERE { ?pred ?edge ?arg ;
+             <domain> <semantics> ;
+             <type>   <predicate> ;
+       { ?edge <change_of_state> ?change_of_state
+               FILTER ( ?change_of_state < 0 )
+       }
+       { ?edge <volition> ?volition
+               FILTER ( ?volition < 0 )
+       }
+       { ?edge <instigation> ?instigation
+               FILTER ( ?instigation < 0 )
+       }
+     }
+
+
+# INSTRUMENT := (was_used > 0) ∧ (existed_during > 0) ∧ (volition < 0)
+
+SELECT ?edge
+WHERE { ?pred ?edge ?arg ;
+             <domain> <semantics> ;
+             <type>   <predicate> ;
+       { ?edge <was_used> ?was_used
+               FILTER ( ?was_used > 0 )
+       }
+       { ?edge <existed_during> ?existed_during
+               FILTER ( ?existed_during > 0 )
+       }
+       { ?edge <volition> ?volition
+               FILTER ( ?volition < 0 )
+       }
+     }
+
+
+# BENEFICIARY := (instigation < 0) ∧ (was_for_benefit > 0)
+
+SELECT ?edge
+WHERE { ?pred ?edge ?arg ;
+             <domain> <semantics> ;
+             <type>   <predicate> ;
+       { ?edge <instigation> ?instigation
+               FILTER ( ?instigation < 0 )
+       }
+       { ?edge <was_for_benefit> ?was_for_benefit
+               FILTER ( ?was_for_benefit > 0 )
+       }
+     }
