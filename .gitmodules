@@ -1,0 +1,3 @@
+[submodule "3rdparty/decomp"]
+	path = 3rdparty/decomp
+	url = https://github.com/decompositional-semantics-initiative/decomp
