@@ -20,7 +20,7 @@
           type: 'embedding',
           pretrained_file: 'data/glove.6B.300d.txt',
           embedding_dim: embed_dim,
-          trainable: true,
+          trainable: false,
         },
       },
     },

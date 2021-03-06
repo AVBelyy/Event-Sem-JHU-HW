@@ -1,6 +1,6 @@
 import sys
 import json
-from sklearn.metrics import classification_report
+from sklearn.metrics import f1_score, classification_report
 
 
 if __name__ == '__main__':
@@ -12,6 +12,6 @@ if __name__ == '__main__':
         for line in fin:
             item = json.loads(line)
             y_true.append(label_map[item['true_labels']])
-            y_pred.append(item['pred_labels'])
-    
+            y_pred.append(label_map[item['pred_labels']])
+
     print(classification_report(y_true, y_pred))

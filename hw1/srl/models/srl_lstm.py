@@ -29,7 +29,9 @@ class SRLLSTM(Model):
             nn.ReLU(),
             nn.Linear(ff_dim, 2),
         )
-        self._metric = F1Measure(positive_label=vocab.get_token_index(token='positive', namespace='labels'))
+        self._pos_label = vocab.get_token_index(token='positive', namespace='labels')
+        self._label_map = {self._pos_label: 'positive', 1 - self._pos_label: 'negative'}
+        self._metric = F1Measure(positive_label=self._pos_label)
         self._loss = nn.CrossEntropyLoss(weight=torch.Tensor([1., pos_weight]))
 
     
@@ -63,7 +65,7 @@ class SRLLSTM(Model):
 
         output: Dict[str, torch.Tensor] = {}
         with torch.no_grad():
-            output['pred_labels'] = predictions
+            output['pred_labels'] = [self._label_map[int(pred)] for pred in predictions]
 
         # None during prediction, non-None during training
         if label is not None:
