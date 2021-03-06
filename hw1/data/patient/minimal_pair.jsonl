@@ -1,0 +1,2 @@
+{"graph_id": "min-pair", "pred_head_idx": 1, "arg_head_idx": 3, "sent": ["Ben", "opened", "the", "door", "with", "a", "key"], "label": true}
+{"graph_id": "min-pair", "pred_head_idx": 1, "arg_head_idx": 3, "sent": ["Ben", "opened", "the", "event", "with", "a", "keynote", "speech"], "label": false}

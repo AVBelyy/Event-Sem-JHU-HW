@@ -1,0 +1,2 @@
+{"logits": [0.284515917301178, -0.523200273513794], "pred_labels": "negative", "loss": 1.1764309406280518, "true_labels": "positive"}
+{"logits": [0.29966670274734497, -0.47613105177879333], "pred_labels": "negative", "loss": 0.37866684794425964, "true_labels": "negative"}
