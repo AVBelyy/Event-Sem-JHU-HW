@@ -1,6 +1,8 @@
 # HW1: Semantic Role Labeling
 
-(The Github repository link is: https://github.com/AVBelyy/Event-Sem-JHU-HW)
+The Github repository link is: https://github.com/AVBelyy/Event-Sem-JHU-HW
+* The first homework is at `hw1`
+* The definitions of the semantic roles are at `hw1/sem_roles.sparql`
 
 ## Data collection
 
